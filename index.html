@@ -1,112 +1,865 @@
+```html
 <!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <title>Shree Jii CSC | Digital Seva Center</title>
+
 <style>
-*{box-sizing:border-box;margin:0;padding:0}
-body{font-family:Arial,Helvetica,sans-serif;background:#f5f7fb;color:#172033;line-height:1.6}
-header{background:#fff;box-shadow:0 2px 12px #00000012;position:sticky;top:0;z-index:10}
-.nav{max-width:1150px;margin:auto;padding:16px 20px;display:flex;align-items:center;justify-content:space-between}
-.logo{font-size:25px;font-weight:800;color:#155eef}.logo span{color:#111827}
-nav a{margin-left:22px;text-decoration:none;color:#374151;font-weight:600}
-.hero{background:linear-gradient(135deg,#155eef,#0b3ea8);color:#fff}
-.hero-inner{max-width:1150px;margin:auto;padding:80px 20px;display:grid;grid-template-columns:1.3fr .7fr;gap:35px;align-items:center}
-.hero h1{font-size:48px;line-height:1.1;margin-bottom:18px}.hero p{font-size:19px;opacity:.92;margin-bottom:28px}
-.btn{display:inline-block;padding:13px 22px;border-radius:9px;text-decoration:none;font-weight:700;margin-right:10px}
-.primary{background:#fff;color:#155eef}.outline{border:1px solid #ffffff80;color:#fff}
-.hero-card{background:#fff;color:#172033;padding:28px;border-radius:18px;box-shadow:0 15px 40px #001c5033}
-.hero-card h3{margin-bottom:10px}.placeholder{background:#fff3a6;border:2px dashed #d49b00;padding:12px;border-radius:8px;font-weight:700;margin-top:12px;color:#5b4500}
-section{max-width:1150px;margin:auto;padding:65px 20px}.title{text-align:center;margin-bottom:35px}.title h2{font-size:32px}.title p{color:#667085;margin-top:8px}
-.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
-.service{background:#fff;padding:25px;border-radius:14px;box-shadow:0 4px 18px #0000000c;border:1px solid #e7eaf0}
-.icon{font-size:32px;margin-bottom:10px}.service h3{margin-bottom:6px}.service p{color:#667085;font-size:14px}
-.about{background:#fff;border-radius:18px;padding:35px;box-shadow:0 4px 18px #0000000c}
-.contact{background:#172033;color:#fff}.contact section{padding-bottom:55px}
-.contact .title p{color:#cbd5e1}.contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px}
-.contact-box{border:1px solid #ffffff22;border-radius:14px;padding:25px}
-.contact-box .placeholder{color:#5b4500}
-footer{text-align:center;background:#0d1320;color:#cbd5e1;padding:20px;font-size:14px}
-@media(max-width:800px){nav{display:none}.hero-inner{grid-template-columns:1fr;padding:55px 20px}.hero h1{font-size:38px}.grid{grid-template-columns:1fr 1fr}.contact-grid{grid-template-columns:1fr}}
-@media(max-width:520px){.grid{grid-template-columns:1fr}.logo{font-size:21px}}
+
+*{
+  box-sizing:border-box;
+  margin:0;
+  padding:0;
+}
+
+html{
+  scroll-behavior:smooth;
+}
+
+body{
+  font-family:Arial,Helvetica,sans-serif;
+  background:#050816;
+  color:#172033;
+  line-height:1.6;
+  position:relative;
+}
+
+/* GALAXY CANVAS */
+#galaxy{
+  position:fixed;
+  inset:0;
+  width:100%;
+  height:100%;
+  z-index:0;
+  pointer-events:none;
+}
+
+/* CONTENT ABOVE GALAXY */
+header,
+main,
+footer{
+  position:relative;
+  z-index:1;
+}
+
+/* HEADER */
+header{
+  background:#ffffffee;
+  backdrop-filter:blur(12px);
+  box-shadow:0 2px 12px #00000018;
+  position:sticky;
+  top:0;
+  z-index:10;
+}
+
+.nav{
+  max-width:1150px;
+  margin:auto;
+  padding:16px 20px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+}
+
+.logo{
+  font-size:25px;
+  font-weight:800;
+  color:#155eef;
+}
+
+.logo span{
+  color:#111827;
+}
+
+nav a{
+  margin-left:22px;
+  text-decoration:none;
+  color:#374151;
+  font-weight:600;
+}
+
+/* HERO */
+.hero{
+  background:linear-gradient(
+    135deg,
+    rgba(21,94,239,.88),
+    rgba(11,62,168,.88)
+  );
+  color:#fff;
+  overflow:hidden;
+}
+
+.hero-inner{
+  max-width:1150px;
+  margin:auto;
+  padding:80px 20px;
+  display:grid;
+  grid-template-columns:1.3fr .7fr;
+  gap:35px;
+  align-items:center;
+}
+
+.hero h1{
+  font-size:48px;
+  line-height:1.1;
+  margin-bottom:18px;
+}
+
+.hero p{
+  font-size:19px;
+  opacity:.92;
+  margin-bottom:28px;
+}
+
+.btn{
+  display:inline-block;
+  padding:13px 22px;
+  border-radius:9px;
+  text-decoration:none;
+  font-weight:700;
+  margin-right:10px;
+}
+
+.primary{
+  background:#fff;
+  color:#155eef;
+}
+
+.outline{
+  border:1px solid #ffffff80;
+  color:#fff;
+}
+
+/* HERO CARD */
+.hero-card{
+  background:#fffffff2;
+  color:#172033;
+  padding:28px;
+  border-radius:18px;
+  box-shadow:0 15px 40px #001c5050;
+  backdrop-filter:blur(10px);
+}
+
+.hero-card h3{
+  margin-bottom:10px;
+}
+
+.placeholder{
+  background:#fff3a6;
+  border:2px dashed #d49b00;
+  padding:12px;
+  border-radius:8px;
+  font-weight:700;
+  margin-top:12px;
+  color:#5b4500;
+}
+
+/* SECTIONS */
+section{
+  max-width:1150px;
+  margin:auto;
+  padding:65px 20px;
+}
+
+.title{
+  text-align:center;
+  margin-bottom:35px;
+}
+
+.title h2{
+  font-size:32px;
+}
+
+.title p{
+  color:#667085;
+  margin-top:8px;
+}
+
+/* SERVICES */
+.grid{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:18px;
+}
+
+.service{
+  background:#fffffff0;
+  padding:25px;
+  border-radius:14px;
+  box-shadow:0 4px 18px #00000018;
+  border:1px solid #e7eaf0;
+  backdrop-filter:blur(10px);
+  transition:.3s;
+}
+
+.service:hover{
+  transform:translateY(-7px);
+  box-shadow:0 12px 30px #00000025;
+}
+
+.icon{
+  font-size:32px;
+  margin-bottom:10px;
+}
+
+.service h3{
+  margin-bottom:6px;
+}
+
+.service p{
+  color:#667085;
+  font-size:14px;
+}
+
+/* ABOUT */
+.about{
+  background:#fffffff0;
+  border-radius:18px;
+  padding:35px;
+  box-shadow:0 4px 18px #00000018;
+  backdrop-filter:blur(10px);
+}
+
+/* CONTACT */
+.contact{
+  background:rgba(23,32,51,.92);
+  color:#fff;
+}
+
+.contact section{
+  padding-bottom:55px;
+}
+
+.contact .title p{
+  color:#cbd5e1;
+}
+
+.contact-grid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:20px;
+}
+
+.contact-box{
+  border:1px solid #ffffff22;
+  border-radius:14px;
+  padding:25px;
+  background:#ffffff08;
+  backdrop-filter:blur(8px);
+}
+
+.contact-box .placeholder{
+  color:#5b4500;
+}
+
+/* FOOTER */
+footer{
+  text-align:center;
+  background:#0d1320;
+  color:#cbd5e1;
+  padding:20px;
+  font-size:14px;
+}
+
+/* MOBILE */
+@media(max-width:800px){
+
+  nav{
+    display:none;
+  }
+
+  .hero-inner{
+    grid-template-columns:1fr;
+    padding:55px 20px;
+  }
+
+  .hero h1{
+    font-size:38px;
+  }
+
+  .grid{
+    grid-template-columns:1fr 1fr;
+  }
+
+  .contact-grid{
+    grid-template-columns:1fr;
+  }
+}
+
+@media(max-width:520px){
+
+  .grid{
+    grid-template-columns:1fr;
+  }
+
+  .logo{
+    font-size:21px;
+  }
+
+  .hero h1{
+    font-size:34px;
+  }
+
+  .btn{
+    margin-bottom:10px;
+  }
+}
+
 </style>
 </head>
+
 <body>
 
+<!-- GALAXY BACKGROUND -->
+<canvas id="galaxy"></canvas>
+
 <header>
+
   <div class="nav">
-    <div class="logo">Shree Jii <span>CSC</span></div>
+
+    <div class="logo">
+      Shree Jii <span>CSC</span>
+    </div>
+
     <nav>
-      <a href="#home">Home</a><a href="#services">Services</a><a href="#about">About</a><a href="#contact">Contact</a>
+      <a href="#home">Home</a>
+      <a href="#services">Services</a>
+      <a href="#about">About</a>
+      <a href="#contact">Contact</a>
     </nav>
+
   </div>
+
 </header>
 
+
 <main id="home">
+
+<!-- HERO -->
+
 <section class="hero">
+
   <div class="hero-inner">
+
     <div>
-      <h1>Digital Services, Simple &amp; Fast.</h1>
-      <p>Welcome to <b>Shree Jii CSC</b> — your local center for convenient digital and citizen services.</p>
-      <a class="btn primary" href="#services">View Services</a>
-      <a class="btn outline" href="#contact">Contact Us</a>
+
+      <h1>
+        Digital Services, Simple &amp; Fast.
+      </h1>
+
+      <p>
+        Welcome to <b>Shree Jii CSC</b> — your local center
+        for convenient digital and citizen services.
+      </p>
+
+      <a class="btn primary" href="#services">
+        View Services
+      </a>
+
+      <a class="btn outline" href="#contact">
+        Contact Us
+      </a>
+
     </div>
+
+
     <div class="hero-card">
+
       <h3>📍 Visit Our CSC Center</h3>
-      <p>Our CSC center is located in Surajpur Greater Noida GB NAGAR 201306 UP.</p>
-      <div class="placeholder">📍 Surajpur Greater Noida GB NAGAR 201306 UP</div>
-      <div class="placeholder">📞 8882539264</div>
+
+      <p>
+        Our CSC center is located in Surajpur Greater Noida
+        GB NAGAR 201306 UP.
+      </p>
+
+      <div class="placeholder">
+        📍 Surajpur Greater Noida GB NAGAR 201306 UP
+      </div>
+
+      <div class="placeholder">
+        📞 8882539264
+      </div>
+
     </div>
+
   </div>
+
 </section>
+
+
+<!-- SERVICES -->
 
 <section id="services">
-  <div class="title"><h2>Our Services</h2><p>Useful digital and citizen services in one place.</p></div>
-  <div class="grid">
-    <div class="service"><div class="icon">🪪</div><h3>PAN Card</h3><p>PAN card application and related assistance.</p></div>
-    <div class="service"><div class="icon">🆔</div><h3>Aadhaar Services</h3><p>Guidance and assistance for available Aadhaar services.</p></div>
-    <div class="service"><div class="icon">🗳️</div><h3>Voter ID</h3><p>Voter-related online application assistance.</p></div>
-    <div class="service"><div class="icon">📄</div><h3>Certificates</h3><p>Online assistance for eligible government certificates.</p></div>
-    <div class="service"><div class="icon">🚘</div><h3>Driving Licence</h3><p>Online application and form-filling assistance.</p></div>
-    <div class="service"><div class="icon">💳</div><h3>Bill &amp; Payment</h3><p>Convenient digital payment and bill-service assistance.</p></div>
+
+  <div class="title">
+
+    <h2>Our Services</h2>
+
+    <p>
+      Useful digital and citizen services in one place.
+    </p>
+
   </div>
+
+
+  <div class="grid">
+
+    <div class="service">
+      <div class="icon">🪪</div>
+      <h3>PAN Card</h3>
+      <p>
+        PAN card application and related assistance.
+      </p>
+    </div>
+
+
+    <div class="service">
+      <div class="icon">🆔</div>
+      <h3>Aadhaar Services</h3>
+      <p>
+        Guidance and assistance for available Aadhaar services.
+      </p>
+    </div>
+
+
+    <div class="service">
+      <div class="icon">🗳️</div>
+      <h3>Voter ID</h3>
+      <p>
+        Voter-related online application assistance.
+      </p>
+    </div>
+
+
+    <div class="service">
+      <div class="icon">📄</div>
+      <h3>Certificates</h3>
+      <p>
+        Online assistance for eligible government certificates.
+      </p>
+    </div>
+
+
+    <div class="service">
+      <div class="icon">🚘</div>
+      <h3>Driving Licence</h3>
+      <p>
+        Online application and form-filling assistance.
+      </p>
+    </div>
+
+
+    <div class="service">
+      <div class="icon">💳</div>
+      <h3>Bill &amp; Payment</h3>
+      <p>
+        Convenient digital payment and bill-service assistance.
+      </p>
+    </div>
+
+  </div>
+
 </section>
+
+
+<!-- ABOUT -->
 
 <section id="about">
-  <div class="title"><h2>About Shree Jii CSC</h2></div>
-  <div class="about">
-    <p><b>Shree Jii CSC</b> is designed to make digital and citizen services easier and more accessible. Customers can visit the center for assistance with online forms, applications and other available services.</p>
-    <br>
-    <p><b>Note:</b> Availability of services depends on the concerned government department/provider and applicable eligibility rules.</p>
+
+  <div class="title">
+
+    <h2>About Shree Jii CSC</h2>
+
   </div>
+
+
+  <div class="about">
+
+    <p>
+      <b>Shree Jii CSC</b> is designed to make digital
+      and citizen services easier and more accessible.
+      Customers can visit the center for assistance with
+      online forms, applications and other available services.
+    </p>
+
+    <br>
+
+    <p>
+      <b>Note:</b> Availability of services depends on the
+      concerned government department/provider and applicable
+      eligibility rules.
+    </p>
+
+  </div>
+
 </section>
+
+
+<!-- CONTACT -->
 
 <div class="contact" id="contact">
+
 <section>
-  <div class="title"><h2>Contact Shree Jii CSC</h2><p>Replace the highlighted details below with your real information.</p></div>
-  <div class="contact-grid">
-    <div class="contact-box">
-      <h3>📍 Center Address</h3>
-      <div class="placeholder">📍 Surajpur Greater Noida GB NAGAR 201306 UP</div>
-    </div>
-    <div class="contact-box">
-      <h3>📞 Call / WhatsApp</h3>
-      <div class="placeholder">📞 8882539264</div>
-    </div>
-    <div class="contact-box">
-      <h3>📧 Email</h3>
-      <div class="placeholder">📧 abhishekthakurndr@gmail.com</div>
-    </div>
-    <div class="contact-box">
-      <h3>🕐 Opening Hours</h3>
-      <div class="placeholder">🕐 10:00 AM to 9:00 PM</div>
-    </div>
+
+  <div class="title">
+
+    <h2>Contact Shree Jii CSC</h2>
+
+    <p>
+      Get in touch with us for digital service assistance.
+    </p>
+
   </div>
+
+
+  <div class="contact-grid">
+
+
+    <div class="contact-box">
+
+      <h3>📍 Center Address</h3>
+
+      <div class="placeholder">
+        📍 Surajpur Greater Noida GB NAGAR 201306 UP
+      </div>
+
+    </div>
+
+
+    <div class="contact-box">
+
+      <h3>📞 Call / WhatsApp</h3>
+
+      <div class="placeholder">
+        📞 8882539264
+      </div>
+
+    </div>
+
+
+    <div class="contact-box">
+
+      <h3>📧 Email</h3>
+
+      <div class="placeholder">
+        📧 abhishekthakurndr@gmail.com
+      </div>
+
+    </div>
+
+
+    <div class="contact-box">
+
+      <h3>🕐 Opening Hours</h3>
+
+      <div class="placeholder">
+        🕐 10:00 AM to 9:00 PM
+      </div>
+
+    </div>
+
+
+  </div>
+
 </section>
+
 </div>
+
 </main>
 
-<footer>© 2026 Shree Jii CSC. All Rights Reserved.</footer>
+
+<footer>
+  © 2026 Shree Jii CSC. All Rights Reserved.
+</footer>
+
+
+<!-- GALAXY JAVASCRIPT -->
+
+<script>
+
+const canvas = document.getElementById("galaxy");
+const ctx = canvas.getContext("2d");
+
+let stars = [];
+
+let mouse = {
+  x: window.innerWidth / 2,
+  y: window.innerHeight / 2
+};
+
+
+function resizeCanvas(){
+
+  canvas.width = window.innerWidth;
+  canvas.height = window.innerHeight;
+
+  stars = [];
+
+  const count = Math.min(
+    500,
+    Math.floor(
+      (window.innerWidth * window.innerHeight) / 2500
+    )
+  );
+
+
+  for(let i = 0; i < count; i++){
+
+    stars.push({
+
+      x: Math.random() * canvas.width,
+
+      y: Math.random() * canvas.height,
+
+      r: Math.random() * 1.8 + 0.3,
+
+      speed: Math.random() * 0.35 + 0.05,
+
+      depth: Math.random() * 1.5 + 0.5,
+
+      glow: Math.random() * Math.PI * 2
+
+    });
+
+  }
+
+}
+
+
+window.addEventListener(
+  "resize",
+  resizeCanvas
+);
+
+
+window.addEventListener(
+  "mousemove",
+  function(e){
+
+    mouse.x = e.clientX;
+    mouse.y = e.clientY;
+
+  }
+);
+
+
+function drawGalaxy(){
+
+  ctx.clearRect(
+    0,
+    0,
+    canvas.width,
+    canvas.height
+  );
+
+
+  /* GALAXY GLOW */
+
+  const gradient =
+    ctx.createRadialGradient(
+
+      canvas.width * 0.5,
+      canvas.height * 0.45,
+      20,
+
+      canvas.width * 0.5,
+      canvas.height * 0.45,
+
+      Math.max(
+        canvas.width,
+        canvas.height
+      ) * 0.65
+
+    );
+
+
+  gradient.addColorStop(
+    0,
+    "rgba(80,120,255,0.18)"
+  );
+
+  gradient.addColorStop(
+    0.45,
+    "rgba(70,50,180,0.10)"
+  );
+
+  gradient.addColorStop(
+    1,
+    "rgba(0,0,0,0)"
+  );
+
+
+  ctx.fillStyle = gradient;
+
+  ctx.fillRect(
+    0,
+    0,
+    canvas.width,
+    canvas.height
+  );
+
+
+  /* STARS */
+
+  stars.forEach(star => {
+
+    star.glow += 0.02;
+
+
+    const twinkle =
+      0.55 +
+      Math.sin(star.glow) * 0.35;
+
+
+    /* MOUSE INTERACTION */
+
+    const dx =
+      mouse.x - star.x;
+
+    const dy =
+      mouse.y - star.y;
+
+    const distance =
+      Math.sqrt(
+        dx * dx +
+        dy * dy
+      );
+
+
+    if(distance < 180){
+
+      const force =
+        (180 - distance) / 180;
+
+
+      star.x -=
+        dx *
+        force *
+        0.0025 *
+        star.depth;
+
+
+      star.y -=
+        dy *
+        force *
+        0.0025 *
+        star.depth;
+
+    }
+
+
+    /* STAR MOVEMENT */
+
+    star.y += star.speed;
+
+
+    if(
+      star.y >
+      canvas.height + 5
+    ){
+
+      star.y = -5;
+
+      star.x =
+        Math.random() *
+        canvas.width;
+
+    }
+
+
+    /* DRAW STAR */
+
+    ctx.beginPath();
+
+    ctx.arc(
+      star.x,
+      star.y,
+      star.r,
+      0,
+      Math.PI * 2
+    );
+
+
+    ctx.fillStyle =
+      `rgba(255,255,255,${twinkle})`;
+
+
+    ctx.shadowBlur = 8;
+
+    ctx.shadowColor =
+      "rgba(120,160,255,0.8)";
+
+
+    ctx.fill();
+
+    ctx.shadowBlur = 0;
+
+  });
+
+
+  /* MOUSE GLOW */
+
+  const glow =
+    ctx.createRadialGradient(
+
+      mouse.x,
+      mouse.y,
+      0,
+
+      mouse.x,
+      mouse.y,
+      150
+
+    );
+
+
+  glow.addColorStop(
+    0,
+    "rgba(100,160,255,0.18)"
+  );
+
+  glow.addColorStop(
+    0.4,
+    "rgba(80,100,255,0.08)"
+  );
+
+  glow.addColorStop(
+    1,
+    "rgba(0,0,0,0)"
+  );
+
+
+  ctx.fillStyle = glow;
+
+  ctx.fillRect(
+
+    mouse.x - 150,
+
+    mouse.y - 150,
+
+    300,
+
+    300
+
+  );
+
+
+  requestAnimationFrame(
+    drawGalaxy
+  );
+
+}
+
+
+resizeCanvas();
+
+drawGalaxy();
+
+</script>
+
 </body>
 </html>
+```
