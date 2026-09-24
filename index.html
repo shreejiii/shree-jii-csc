@@ -451,5 +451,574 @@ footer{
 
     <div class="service">
       <div class="icon">🚘</div>
-      <h3>Driving
+      <h3>Driving Licence</h3>
+      <p>Online application and form-filling assistance.</p>
+    </div>
+
+    <div class="service">
+      <div class="icon">💳</div>
+      <h3>Bill &amp; Payment</h3>
+      <p>Convenient digital payment and bill-service assistance.</p>
+    </div>
+
+  </div>
+</section>
+
+<section id="about">
+
+  <div class="title">
+    <h2>About Shree Jii CSC</h2>
+  </div>
+
+  <div class="about">
+
+    <p>
+      <b>Shree Jii CSC</b> is designed to make digital and
+      citizen services easier and more accessible. Customers
+      can visit the center for assistance with online forms,
+      applications and other available services.
+    </p>
+
+    <br>
+
+    <p>
+      <b>Note:</b> Availability of services depends on the
+      concerned government department/provider and applicable
+      eligibility rules.
+    </p>
+
+  </div>
+</section>
+
+<div class="contact" id="contact">
+
+<section>
+
+  <div class="title">
+    <h2>Contact Shree Jii CSC</h2>
+    <p>Get in touch with us for digital service assistance.</p>
+  </div>
+
+  <div class="contact-grid">
+
+    <div class="contact-box">
+      <h3>📍 Center Address</h3>
+      <div class="placeholder">
+        📍 Surajpur Greater Noida GB NAGAR 201306 UP
+      </div>
+    </div>
+
+    <div class="contact-box">
+      <h3>📞 Call / WhatsApp</h3>
+      <div class="placeholder">
+        📞 8882539264
+      </div>
+    </div>
+
+    <div class="contact-box">
+      <h3>📧 Email</h3>
+      <div class="placeholder">
+        📧 abhishekthakurndr@gmail.com
+      </div>
+    </div>
+
+    <div class="contact-box">
+      <h3>🕐 Opening Hours</h3>
+      <div class="placeholder">
+        🕐 10:00 AM to 9:00 PM
+      </div>
+    </div>
+
+  </div>
+
+</section>
+</div>
+
+</main>
+
+<footer>
+  © 2026 Shree Jii CSC. All Rights Reserved.
+</footer>
+
+
+<script>
+
+const canvas = document.getElementById("space");
+const ctx = canvas.getContext("2d");
+
+let stars = [];
+let planets = [];
+
+const mouse = {
+  x: window.innerWidth / 2,
+  y: window.innerHeight / 2
+};
+
+function resize(){
+
+  canvas.width = window.innerWidth;
+  canvas.height = window.innerHeight;
+
+  createStars();
+  createPlanets();
+}
+
+function createStars(){
+
+  stars=[];
+
+  const count=Math.min(
+    550,
+    Math.floor(
+      window.innerWidth *
+      window.innerHeight / 2300
+    )
+  );
+
+  for(let i=0;i<count;i++){
+
+    stars.push({
+      x:Math.random()*canvas.width,
+      y:Math.random()*canvas.height,
+      r:Math.random()*1.7+.25,
+      speed:Math.random()*.35+.04,
+      depth:Math.random()*1.5+.5,
+      glow:Math.random()*Math.PI*2
+    });
+
+  }
+}
+
+function createPlanets(){
+
+  const minSize=Math.min(
+    canvas.width,
+    canvas.height
+  );
+
+  planets=[
+
+    {
+      orbit:minSize*.20,
+      size:7,
+      speed:.0025,
+      angle:Math.random()*Math.PI*2,
+      type:"blue"
+    },
+
+    {
+      orbit:minSize*.29,
+      size:11,
+      speed:.0018,
+      angle:Math.random()*Math.PI*2,
+      type:"orange"
+    },
+
+    {
+      orbit:minSize*.38,
+      size:8,
+      speed:.00125,
+      angle:Math.random()*Math.PI*2,
+      type:"green"
+    },
+
+    {
+      orbit:minSize*.46,
+      size:15,
+      speed:.0008,
+      angle:Math.random()*Math.PI*2,
+      type:"purple"
+    }
+
+  ];
+}
+
+window.addEventListener(
+  "resize",
+  resize
+);
+
+window.addEventListener(
+  "mousemove",
+  function(e){
+
+    mouse.x=e.clientX;
+    mouse.y=e.clientY;
+
+  }
+);
+
+function planetColor(type){
+
+  if(type==="blue")
+    return ["#38bdf8","#075985"];
+
+  if(type==="orange")
+    return ["#fb923c","#9a3412"];
+
+  if(type==="green")
+    return ["#4ade80","#166534"];
+
+  return ["#c084fc","#581c87"];
+}
+
+function draw(){
+
+  ctx.clearRect(
+    0,
+    0,
+    canvas.width,
+    canvas.height
+  );
+
+  /* GALAXY */
+
+  const galaxy=ctx.createRadialGradient(
+    canvas.width*.5,
+    canvas.height*.45,
+    10,
+    canvas.width*.5,
+    canvas.height*.45,
+    Math.max(
+      canvas.width,
+      canvas.height
+    )*.7
+  );
+
+  galaxy.addColorStop(
+    0,
+    "rgba(70,100,255,.18)"
+  );
+
+  galaxy.addColorStop(
+    .4,
+    "rgba(110,50,220,.08)"
+  );
+
+  galaxy.addColorStop(
+    1,
+    "rgba(0,0,0,0)"
+  );
+
+  ctx.fillStyle=galaxy;
+
+  ctx.fillRect(
+    0,
+    0,
+    canvas.width,
+    canvas.height
+  );
+
+
+  /* STARS */
+
+  stars.forEach(star=>{
+
+    star.glow+=.02;
+
+    const alpha=
+      .5+
+      Math.sin(star.glow)*.35;
+
+    const dx=mouse.x-star.x;
+    const dy=mouse.y-star.y;
+
+    const distance=
+      Math.sqrt(dx*dx+dy*dy);
+
+    if(distance<180){
+
+      const force=
+        (180-distance)/180;
+
+      star.x-=
+        dx*
+        force*
+        .0025*
+        star.depth;
+
+      star.y-=
+        dy*
+        force*
+        .0025*
+        star.depth;
+    }
+
+    star.y+=star.speed;
+
+    if(star.y>canvas.height+5){
+
+      star.y=-5;
+
+      star.x=
+        Math.random()*
+        canvas.width;
+
+    }
+
+    ctx.beginPath();
+
+    ctx.arc(
+      star.x,
+      star.y,
+      star.r,
+      0,
+      Math.PI*2
+    );
+
+    ctx.fillStyle=
+      `rgba(255,255,255,${alpha})`;
+
+    ctx.shadowBlur=7;
+
+    ctx.shadowColor=
+      "rgba(100,160,255,.9)";
+
+    ctx.fill();
+
+    ctx.shadowBlur=0;
+
+  });
+
+
+  /* SOLAR SYSTEM CENTER */
+
+  const cx=
+    canvas.width*.5+
+    (mouse.x-canvas.width*.5)*.015;
+
+  const cy=
+    canvas.height*.47+
+    (mouse.y-canvas.height*.47)*.015;
+
+
+  /* ORBITS */
+
+  planets.forEach(planet=>{
+
+    ctx.beginPath();
+
+    ctx.arc(
+      cx,
+      cy,
+      planet.orbit,
+      0,
+      Math.PI*2
+    );
+
+    ctx.strokeStyle=
+      "rgba(150,190,255,.13)";
+
+    ctx.lineWidth=1;
+
+    ctx.stroke();
+
+  });
+
+
+  /* SUN */
+
+  const sunGlow=
+    ctx.createRadialGradient(
+      cx,
+      cy,
+      2,
+      cx,
+      cy,
+      55
+    );
+
+  sunGlow.addColorStop(
+    0,
+    "rgba(255,245,180,1)"
+  );
+
+  sunGlow.addColorStop(
+    .25,
+    "rgba(255,190,60,.9)"
+  );
+
+  sunGlow.addColorStop(
+    .6,
+    "rgba(255,130,20,.22)"
+  );
+
+  sunGlow.addColorStop(
+    1,
+    "rgba(255,100,0,0)"
+  );
+
+  ctx.fillStyle=sunGlow;
+
+  ctx.beginPath();
+
+  ctx.arc(
+    cx,
+    cy,
+    55,
+    0,
+    Math.PI*2
+  );
+
+  ctx.fill();
+
+
+  /* SUN CORE */
+
+  ctx.beginPath();
+
+  ctx.arc(
+    cx,
+    cy,
+    13,
+    0,
+    Math.PI*2
+  );
+
+  ctx.fillStyle="#ffd166";
+
+  ctx.shadowBlur=25;
+
+  ctx.shadowColor="#ff9d00";
+
+  ctx.fill();
+
+  ctx.shadowBlur=0;
+
+
+  /* PLANETS */
+
+  planets.forEach(planet=>{
+
+    planet.angle+=planet.speed;
+
+    const px=
+      cx+
+      Math.cos(planet.angle)*
+      planet.orbit;
+
+    const py=
+      cy+
+      Math.sin(planet.angle)*
+      planet.orbit;
+
+    const colors=
+      planetColor(planet.type);
+
+    const pg=
+      ctx.createRadialGradient(
+        px-planet.size*.35,
+        py-planet.size*.35,
+        1,
+        px,
+        py,
+        planet.size*1.5
+      );
+
+    pg.addColorStop(
+      0,
+      colors[0]
+    );
+
+    pg.addColorStop(
+      1,
+      colors[1]
+    );
+
+    ctx.beginPath();
+
+    ctx.arc(
+      px,
+      py,
+      planet.size,
+      0,
+      Math.PI*2
+    );
+
+    ctx.fillStyle=pg;
+
+    ctx.shadowBlur=14;
+
+    ctx.shadowColor=colors[0];
+
+    ctx.fill();
+
+    ctx.shadowBlur=0;
+
+
+    /* SATURN RING */
+
+    if(planet.size===15){
+
+      ctx.beginPath();
+
+      ctx.ellipse(
+        px,
+        py,
+        planet.size*1.8,
+        planet.size*.65,
+        -.25,
+        0,
+        Math.PI*2
+      );
+
+      ctx.strokeStyle=
+        "rgba(230,210,170,.65)";
+
+      ctx.lineWidth=2;
+
+      ctx.stroke();
+
+    }
+
+  });
+
+
+  /* MOUSE GLOW */
+
+  const mouseGlow=
+    ctx.createRadialGradient(
+      mouse.x,
+      mouse.y,
+      0,
+      mouse.x,
+      mouse.y,
+      150
+    );
+
+  mouseGlow.addColorStop(
+    0,
+    "rgba(100,170,255,.17)"
+  );
+
+  mouseGlow.addColorStop(
+    .4,
+    "rgba(80,100,255,.07)"
+  );
+
+  mouseGlow.addColorStop(
+    1,
+    "rgba(0,0,0,0)"
+  );
+
+  ctx.fillStyle=mouseGlow;
+
+  ctx.fillRect(
+    mouse.x-150,
+    mouse.y-150,
+    300,
+    300
+  );
+
+
+  requestAnimationFrame(draw);
+}
+
+resize();
+draw();
+
+</script>
+
+</body>
+</html>
 ```
