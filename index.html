@@ -4,55 +4,56 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
 <title>Shree Jii CSC | Digital Seva Center</title>
 
 <style>
+*{box-sizing:border-box;margin:0;padding:0}
 
-*{
-  box-sizing:border-box;
-  margin:0;
-  padding:0;
-}
-
-html{
-  scroll-behavior:smooth;
-}
+html{scroll-behavior:smooth}
 
 body{
   font-family:Arial,Helvetica,sans-serif;
-  background:#050816;
-  color:#172033;
+  background:#030712;
+  color:#f8fafc;
   line-height:1.6;
-  position:relative;
+  overflow-x:hidden;
 }
 
-/* GALAXY CANVAS */
-#galaxy{
+/* SPACE BACKGROUND */
+#space{
   position:fixed;
   inset:0;
   width:100%;
   height:100%;
-  z-index:0;
-  pointer-events:none;
+  z-index:-5;
+  background:#030712;
 }
 
-/* CONTENT ABOVE GALAXY */
-header,
-main,
-footer{
-  position:relative;
-  z-index:1;
+/* DARK READABILITY LAYER */
+body::before{
+  content:"";
+  position:fixed;
+  inset:0;
+  z-index:-4;
+  pointer-events:none;
+  background:
+    radial-gradient(circle at 50% 45%,
+      rgba(38,72,180,.16),
+      transparent 42%),
+    linear-gradient(
+      rgba(3,7,18,.18),
+      rgba(3,7,18,.45)
+    );
 }
 
 /* HEADER */
 header{
-  background:#ffffffee;
-  backdrop-filter:blur(12px);
-  box-shadow:0 2px 12px #00000018;
+  background:rgba(5,10,25,.72);
+  backdrop-filter:blur(14px);
+  border-bottom:1px solid rgba(255,255,255,.12);
   position:sticky;
   top:0;
-  z-index:10;
+  z-index:20;
 }
 
 .nav{
@@ -67,35 +68,49 @@ header{
 .logo{
   font-size:25px;
   font-weight:800;
-  color:#155eef;
+  color:#8fc7ff;
+  text-shadow:0 0 15px rgba(80,160,255,.45);
 }
 
-.logo span{
-  color:#111827;
-}
+.logo span{color:#fff}
 
 nav a{
   margin-left:22px;
   text-decoration:none;
-  color:#374151;
+  color:#e5e7eb;
   font-weight:600;
+  transition:.25s;
+}
+
+nav a:hover{
+  color:#7dd3fc;
+  text-shadow:0 0 10px rgba(125,211,252,.7);
+}
+
+/* MAIN */
+main,footer,header{
+  position:relative;
+  z-index:2;
 }
 
 /* HERO */
 .hero{
-  background:linear-gradient(
-    135deg,
-    rgba(21,94,239,.88),
-    rgba(11,62,168,.88)
-  );
-  color:#fff;
-  overflow:hidden;
+  min-height:650px;
+  display:flex;
+  align-items:center;
+  background:
+    linear-gradient(
+      135deg,
+      rgba(11,35,100,.72),
+      rgba(4,12,35,.48)
+    );
 }
 
 .hero-inner{
   max-width:1150px;
+  width:100%;
   margin:auto;
-  padding:80px 20px;
+  padding:90px 20px;
   display:grid;
   grid-template-columns:1.3fr .7fr;
   gap:35px;
@@ -103,65 +118,90 @@ nav a{
 }
 
 .hero h1{
-  font-size:48px;
+  font-size:50px;
   line-height:1.1;
   margin-bottom:18px;
+  color:#fff;
+  text-shadow:0 3px 25px rgba(0,0,0,.55);
 }
 
 .hero p{
   font-size:19px;
-  opacity:.92;
+  color:#e2e8f0;
   margin-bottom:28px;
+  text-shadow:0 2px 12px rgba(0,0,0,.6);
 }
 
 .btn{
   display:inline-block;
   padding:13px 22px;
-  border-radius:9px;
+  border-radius:10px;
   text-decoration:none;
   font-weight:700;
   margin-right:10px;
+  transition:.3s;
 }
 
 .primary{
   background:#fff;
-  color:#155eef;
+  color:#1456d9;
+  box-shadow:0 8px 25px rgba(0,0,0,.25);
+}
+
+.primary:hover{
+  transform:translateY(-3px);
+  box-shadow:0 12px 30px rgba(70,150,255,.35);
 }
 
 .outline{
-  border:1px solid #ffffff80;
+  border:1px solid rgba(255,255,255,.5);
   color:#fff;
+  background:rgba(255,255,255,.06);
+  backdrop-filter:blur(5px);
 }
 
-/* HERO CARD */
+.outline:hover{
+  background:rgba(255,255,255,.14);
+}
+
+/* GLASS CARD */
 .hero-card{
-  background:#fffffff2;
-  color:#172033;
+  background:rgba(255,255,255,.10);
+  color:#fff;
   padding:28px;
-  border-radius:18px;
-  box-shadow:0 15px 40px #001c5050;
-  backdrop-filter:blur(10px);
+  border-radius:20px;
+  border:1px solid rgba(255,255,255,.18);
+  box-shadow:0 20px 50px rgba(0,0,0,.35);
+  backdrop-filter:blur(14px);
 }
 
 .hero-card h3{
   margin-bottom:10px;
+  color:#fff;
+}
+
+.hero-card p{
+  color:#dbeafe;
+  font-size:15px;
+  margin-bottom:12px;
 }
 
 .placeholder{
-  background:#fff3a6;
-  border:2px dashed #d49b00;
+  background:rgba(255,255,255,.11);
+  border:1px solid rgba(255,255,255,.22);
   padding:12px;
-  border-radius:8px;
+  border-radius:9px;
   font-weight:700;
   margin-top:12px;
-  color:#5b4500;
+  color:#f8fafc;
+  backdrop-filter:blur(8px);
 }
 
 /* SECTIONS */
 section{
   max-width:1150px;
   margin:auto;
-  padding:65px 20px;
+  padding:70px 20px;
 }
 
 .title{
@@ -170,11 +210,13 @@ section{
 }
 
 .title h2{
-  font-size:32px;
+  font-size:34px;
+  color:#fff;
+  text-shadow:0 2px 18px rgba(0,0,0,.65);
 }
 
 .title p{
-  color:#667085;
+  color:#cbd5e1;
   margin-top:8px;
 }
 
@@ -186,18 +228,19 @@ section{
 }
 
 .service{
-  background:#fffffff0;
+  background:rgba(255,255,255,.09);
   padding:25px;
-  border-radius:14px;
-  box-shadow:0 4px 18px #00000018;
-  border:1px solid #e7eaf0;
-  backdrop-filter:blur(10px);
+  border-radius:16px;
+  border:1px solid rgba(255,255,255,.15);
+  box-shadow:0 10px 30px rgba(0,0,0,.2);
+  backdrop-filter:blur(12px);
   transition:.3s;
 }
 
 .service:hover{
-  transform:translateY(-7px);
-  box-shadow:0 12px 30px #00000025;
+  transform:translateY(-8px);
+  background:rgba(255,255,255,.14);
+  border-color:rgba(125,211,252,.4);
 }
 
 .icon{
@@ -207,30 +250,37 @@ section{
 
 .service h3{
   margin-bottom:6px;
+  color:#fff;
 }
 
 .service p{
-  color:#667085;
+  color:#cbd5e1;
   font-size:14px;
 }
 
 /* ABOUT */
 .about{
-  background:#fffffff0;
+  background:rgba(255,255,255,.09);
   border-radius:18px;
   padding:35px;
-  box-shadow:0 4px 18px #00000018;
-  backdrop-filter:blur(10px);
+  border:1px solid rgba(255,255,255,.15);
+  box-shadow:0 10px 30px rgba(0,0,0,.22);
+  backdrop-filter:blur(12px);
+  color:#e2e8f0;
 }
+
+.about b{color:#fff}
 
 /* CONTACT */
 .contact{
-  background:rgba(23,32,51,.92);
+  background:rgba(2,6,23,.75);
   color:#fff;
+  border-top:1px solid rgba(255,255,255,.1);
+  border-bottom:1px solid rgba(255,255,255,.1);
 }
 
 .contact section{
-  padding-bottom:55px;
+  padding-bottom:60px;
 }
 
 .contact .title p{
@@ -244,21 +294,21 @@ section{
 }
 
 .contact-box{
-  border:1px solid #ffffff22;
+  border:1px solid rgba(255,255,255,.14);
   border-radius:14px;
   padding:25px;
-  background:#ffffff08;
-  backdrop-filter:blur(8px);
+  background:rgba(255,255,255,.06);
+  backdrop-filter:blur(10px);
 }
 
-.contact-box .placeholder{
-  color:#5b4500;
+.contact-box h3{
+  color:#fff;
 }
 
 /* FOOTER */
 footer{
   text-align:center;
-  background:#0d1320;
+  background:rgba(0,0,0,.7);
   color:#cbd5e1;
   padding:20px;
   font-size:14px;
@@ -266,19 +316,14 @@ footer{
 
 /* MOBILE */
 @media(max-width:800px){
-
-  nav{
-    display:none;
-  }
+  nav{display:none}
 
   .hero-inner{
     grid-template-columns:1fr;
-    padding:55px 20px;
+    padding:60px 20px;
   }
 
-  .hero h1{
-    font-size:38px;
-  }
+  .hero h1{font-size:40px}
 
   .grid{
     grid-template-columns:1fr 1fr;
@@ -290,39 +335,33 @@ footer{
 }
 
 @media(max-width:520px){
+  .grid{grid-template-columns:1fr}
 
-  .grid{
-    grid-template-columns:1fr;
-  }
+  .logo{font-size:21px}
 
-  .logo{
-    font-size:21px;
-  }
-
-  .hero h1{
-    font-size:34px;
-  }
+  .hero h1{font-size:34px}
 
   .btn{
     margin-bottom:10px;
   }
 }
 
+/* REDUCED MOTION */
+@media(prefers-reduced-motion:reduce){
+  *{
+    scroll-behavior:auto!important;
+  }
+}
 </style>
 </head>
 
 <body>
 
-<!-- GALAXY BACKGROUND -->
-<canvas id="galaxy"></canvas>
+<canvas id="space"></canvas>
 
 <header>
-
   <div class="nav">
-
-    <div class="logo">
-      Shree Jii <span>CSC</span>
-    </div>
+    <div class="logo">Shree Jii <span>CSC</span></div>
 
     <nav>
       <a href="#home">Home</a>
@@ -330,25 +369,16 @@ footer{
       <a href="#about">About</a>
       <a href="#contact">Contact</a>
     </nav>
-
   </div>
-
 </header>
-
 
 <main id="home">
 
-<!-- HERO -->
-
 <section class="hero">
-
   <div class="hero-inner">
 
     <div>
-
-      <h1>
-        Digital Services, Simple &amp; Fast.
-      </h1>
+      <h1>Digital Services, Simple &amp; Fast.</h1>
 
       <p>
         Welcome to <b>Shree Jii CSC</b> — your local center
@@ -362,9 +392,7 @@ footer{
       <a class="btn outline" href="#contact">
         Contact Us
       </a>
-
     </div>
-
 
     <div class="hero-card">
 
@@ -386,480 +414,42 @@ footer{
     </div>
 
   </div>
-
 </section>
-
-
-<!-- SERVICES -->
 
 <section id="services">
 
   <div class="title">
-
     <h2>Our Services</h2>
-
-    <p>
-      Useful digital and citizen services in one place.
-    </p>
-
+    <p>Useful digital and citizen services in one place.</p>
   </div>
-
 
   <div class="grid">
 
     <div class="service">
       <div class="icon">🪪</div>
       <h3>PAN Card</h3>
-      <p>
-        PAN card application and related assistance.
-      </p>
+      <p>PAN card application and related assistance.</p>
     </div>
-
 
     <div class="service">
       <div class="icon">🆔</div>
       <h3>Aadhaar Services</h3>
-      <p>
-        Guidance and assistance for available Aadhaar services.
-      </p>
+      <p>Guidance and assistance for available Aadhaar services.</p>
     </div>
-
 
     <div class="service">
       <div class="icon">🗳️</div>
       <h3>Voter ID</h3>
-      <p>
-        Voter-related online application assistance.
-      </p>
+      <p>Voter-related online application assistance.</p>
     </div>
-
 
     <div class="service">
       <div class="icon">📄</div>
       <h3>Certificates</h3>
-      <p>
-        Online assistance for eligible government certificates.
-      </p>
+      <p>Online assistance for eligible government certificates.</p>
     </div>
-
 
     <div class="service">
       <div class="icon">🚘</div>
-      <h3>Driving Licence</h3>
-      <p>
-        Online application and form-filling assistance.
-      </p>
-    </div>
-
-
-    <div class="service">
-      <div class="icon">💳</div>
-      <h3>Bill &amp; Payment</h3>
-      <p>
-        Convenient digital payment and bill-service assistance.
-      </p>
-    </div>
-
-  </div>
-
-</section>
-
-
-<!-- ABOUT -->
-
-<section id="about">
-
-  <div class="title">
-
-    <h2>About Shree Jii CSC</h2>
-
-  </div>
-
-
-  <div class="about">
-
-    <p>
-      <b>Shree Jii CSC</b> is designed to make digital
-      and citizen services easier and more accessible.
-      Customers can visit the center for assistance with
-      online forms, applications and other available services.
-    </p>
-
-    <br>
-
-    <p>
-      <b>Note:</b> Availability of services depends on the
-      concerned government department/provider and applicable
-      eligibility rules.
-    </p>
-
-  </div>
-
-</section>
-
-
-<!-- CONTACT -->
-
-<div class="contact" id="contact">
-
-<section>
-
-  <div class="title">
-
-    <h2>Contact Shree Jii CSC</h2>
-
-    <p>
-      Get in touch with us for digital service assistance.
-    </p>
-
-  </div>
-
-
-  <div class="contact-grid">
-
-
-    <div class="contact-box">
-
-      <h3>📍 Center Address</h3>
-
-      <div class="placeholder">
-        📍 Surajpur Greater Noida GB NAGAR 201306 UP
-      </div>
-
-    </div>
-
-
-    <div class="contact-box">
-
-      <h3>📞 Call / WhatsApp</h3>
-
-      <div class="placeholder">
-        📞 8882539264
-      </div>
-
-    </div>
-
-
-    <div class="contact-box">
-
-      <h3>📧 Email</h3>
-
-      <div class="placeholder">
-        📧 abhishekthakurndr@gmail.com
-      </div>
-
-    </div>
-
-
-    <div class="contact-box">
-
-      <h3>🕐 Opening Hours</h3>
-
-      <div class="placeholder">
-        🕐 10:00 AM to 9:00 PM
-      </div>
-
-    </div>
-
-
-  </div>
-
-</section>
-
-</div>
-
-</main>
-
-
-<footer>
-  © 2026 Shree Jii CSC. All Rights Reserved.
-</footer>
-
-
-<!-- GALAXY JAVASCRIPT -->
-
-<script>
-
-const canvas = document.getElementById("galaxy");
-const ctx = canvas.getContext("2d");
-
-let stars = [];
-
-let mouse = {
-  x: window.innerWidth / 2,
-  y: window.innerHeight / 2
-};
-
-
-function resizeCanvas(){
-
-  canvas.width = window.innerWidth;
-  canvas.height = window.innerHeight;
-
-  stars = [];
-
-  const count = Math.min(
-    500,
-    Math.floor(
-      (window.innerWidth * window.innerHeight) / 2500
-    )
-  );
-
-
-  for(let i = 0; i < count; i++){
-
-    stars.push({
-
-      x: Math.random() * canvas.width,
-
-      y: Math.random() * canvas.height,
-
-      r: Math.random() * 1.8 + 0.3,
-
-      speed: Math.random() * 0.35 + 0.05,
-
-      depth: Math.random() * 1.5 + 0.5,
-
-      glow: Math.random() * Math.PI * 2
-
-    });
-
-  }
-
-}
-
-
-window.addEventListener(
-  "resize",
-  resizeCanvas
-);
-
-
-window.addEventListener(
-  "mousemove",
-  function(e){
-
-    mouse.x = e.clientX;
-    mouse.y = e.clientY;
-
-  }
-);
-
-
-function drawGalaxy(){
-
-  ctx.clearRect(
-    0,
-    0,
-    canvas.width,
-    canvas.height
-  );
-
-
-  /* GALAXY GLOW */
-
-  const gradient =
-    ctx.createRadialGradient(
-
-      canvas.width * 0.5,
-      canvas.height * 0.45,
-      20,
-
-      canvas.width * 0.5,
-      canvas.height * 0.45,
-
-      Math.max(
-        canvas.width,
-        canvas.height
-      ) * 0.65
-
-    );
-
-
-  gradient.addColorStop(
-    0,
-    "rgba(80,120,255,0.18)"
-  );
-
-  gradient.addColorStop(
-    0.45,
-    "rgba(70,50,180,0.10)"
-  );
-
-  gradient.addColorStop(
-    1,
-    "rgba(0,0,0,0)"
-  );
-
-
-  ctx.fillStyle = gradient;
-
-  ctx.fillRect(
-    0,
-    0,
-    canvas.width,
-    canvas.height
-  );
-
-
-  /* STARS */
-
-  stars.forEach(star => {
-
-    star.glow += 0.02;
-
-
-    const twinkle =
-      0.55 +
-      Math.sin(star.glow) * 0.35;
-
-
-    /* MOUSE INTERACTION */
-
-    const dx =
-      mouse.x - star.x;
-
-    const dy =
-      mouse.y - star.y;
-
-    const distance =
-      Math.sqrt(
-        dx * dx +
-        dy * dy
-      );
-
-
-    if(distance < 180){
-
-      const force =
-        (180 - distance) / 180;
-
-
-      star.x -=
-        dx *
-        force *
-        0.0025 *
-        star.depth;
-
-
-      star.y -=
-        dy *
-        force *
-        0.0025 *
-        star.depth;
-
-    }
-
-
-    /* STAR MOVEMENT */
-
-    star.y += star.speed;
-
-
-    if(
-      star.y >
-      canvas.height + 5
-    ){
-
-      star.y = -5;
-
-      star.x =
-        Math.random() *
-        canvas.width;
-
-    }
-
-
-    /* DRAW STAR */
-
-    ctx.beginPath();
-
-    ctx.arc(
-      star.x,
-      star.y,
-      star.r,
-      0,
-      Math.PI * 2
-    );
-
-
-    ctx.fillStyle =
-      `rgba(255,255,255,${twinkle})`;
-
-
-    ctx.shadowBlur = 8;
-
-    ctx.shadowColor =
-      "rgba(120,160,255,0.8)";
-
-
-    ctx.fill();
-
-    ctx.shadowBlur = 0;
-
-  });
-
-
-  /* MOUSE GLOW */
-
-  const glow =
-    ctx.createRadialGradient(
-
-      mouse.x,
-      mouse.y,
-      0,
-
-      mouse.x,
-      mouse.y,
-      150
-
-    );
-
-
-  glow.addColorStop(
-    0,
-    "rgba(100,160,255,0.18)"
-  );
-
-  glow.addColorStop(
-    0.4,
-    "rgba(80,100,255,0.08)"
-  );
-
-  glow.addColorStop(
-    1,
-    "rgba(0,0,0,0)"
-  );
-
-
-  ctx.fillStyle = glow;
-
-  ctx.fillRect(
-
-    mouse.x - 150,
-
-    mouse.y - 150,
-
-    300,
-
-    300
-
-  );
-
-
-  requestAnimationFrame(
-    drawGalaxy
-  );
-
-}
-
-
-resizeCanvas();
-
-drawGalaxy();
-
-</script>
-
-</body>
-</html>
+      <h3>Driving
 ```
