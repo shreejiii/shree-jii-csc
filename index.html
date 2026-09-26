@@ -1,4 +1,3 @@
-```html
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -352,6 +351,43 @@ footer{
     scroll-behavior:auto!important;
   }
 }
+
+/* SERVICE APPLICATION MODAL */
+.service{cursor:pointer}
+#serviceModal{
+  display:none;position:fixed;inset:0;z-index:100;
+  background:rgba(0,0,0,.72);backdrop-filter:blur(8px);
+  padding:20px;overflow-y:auto;
+}
+#serviceModal.show{display:flex;align-items:center;justify-content:center}
+.form-card{
+  width:min(760px,100%);max-height:92vh;overflow-y:auto;
+  background:rgba(7,15,35,.96);border:1px solid rgba(125,211,252,.3);
+  border-radius:20px;padding:26px;box-shadow:0 25px 80px rgba(0,0,0,.55);
+}
+.form-head{display:flex;justify-content:space-between;align-items:center;gap:15px;margin-bottom:18px}
+.form-head h2{color:#fff}
+.close-form{border:0;background:rgba(255,255,255,.1);color:#fff;width:38px;height:38px;border-radius:50%;font-size:22px;cursor:pointer}
+.form-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.form-group{display:flex;flex-direction:column;gap:6px}
+.form-group.full{grid-column:1/-1}
+.form-group label{font-size:14px;color:#dbeafe;font-weight:700}
+.form-group input,.form-group select,.form-group textarea{
+  width:100%;padding:12px;border-radius:10px;border:1px solid rgba(255,255,255,.18);
+  background:rgba(255,255,255,.08);color:#fff;outline:none;
+}
+.form-group select option{color:#111}
+.form-group textarea{min-height:85px;resize:vertical}
+.form-group input[type=file]{padding:10px}
+.file-note{font-size:12px;color:#94a3b8}
+.form-submit{
+  width:100%;margin-top:18px;padding:14px;border:0;border-radius:11px;
+  background:#fff;color:#1456d9;font-weight:800;font-size:16px;cursor:pointer;
+}
+.form-submit:disabled{opacity:.6;cursor:wait}
+.form-status{margin-top:12px;text-align:center;font-weight:700}
+@media(max-width:600px){.form-grid{grid-template-columns:1fr}.form-group.full{grid-column:auto}}
+
 </style>
 </head>
 
@@ -424,44 +460,44 @@ footer{
   </div>
 
   <div class="grid">
-
-    <div class="service">
+<div class="service" data-service="pan" onclick="openServiceForm('pan')">
       <div class="icon">🪪</div>
       <h3>PAN Card</h3>
       <p>PAN card application and related assistance.</p>
+      <div style="margin-top:12px;color:#7dd3fc;font-weight:700">Click to Apply →</div>
     </div>
-
-    <div class="service">
+<div class="service" data-service="aadhaar" onclick="openServiceForm('aadhaar')">
       <div class="icon">🆔</div>
       <h3>Aadhaar Services</h3>
       <p>Guidance and assistance for available Aadhaar services.</p>
+      <div style="margin-top:12px;color:#7dd3fc;font-weight:700">Click to Apply →</div>
     </div>
-
-    <div class="service">
+<div class="service" data-service="voter" onclick="openServiceForm('voter')">
       <div class="icon">🗳️</div>
       <h3>Voter ID</h3>
       <p>Voter-related online application assistance.</p>
+      <div style="margin-top:12px;color:#7dd3fc;font-weight:700">Click to Apply →</div>
     </div>
-
-    <div class="service">
+<div class="service" data-service="certificate" onclick="openServiceForm('certificate')">
       <div class="icon">📄</div>
       <h3>Certificates</h3>
       <p>Online assistance for eligible government certificates.</p>
+      <div style="margin-top:12px;color:#7dd3fc;font-weight:700">Click to Apply →</div>
     </div>
-
-    <div class="service">
+<div class="service" data-service="dl" onclick="openServiceForm('dl')">
       <div class="icon">🚘</div>
       <h3>Driving Licence</h3>
       <p>Online application and form-filling assistance.</p>
+      <div style="margin-top:12px;color:#7dd3fc;font-weight:700">Click to Apply →</div>
     </div>
-
-    <div class="service">
+<div class="service" data-service="bill" onclick="openServiceForm('bill')">
       <div class="icon">💳</div>
       <h3>Bill &amp; Payment</h3>
       <p>Convenient digital payment and bill-service assistance.</p>
+      <div style="margin-top:12px;color:#7dd3fc;font-weight:700">Click to Apply →</div>
     </div>
+</div>
 
-  </div>
 </section>
 
 <section id="about">
@@ -532,6 +568,79 @@ footer{
   </div>
 
 </section>
+</div>
+
+
+<!-- SERVICE APPLICATION FORM -->
+<div id="serviceModal">
+  <div class="form-card">
+    <div class="form-head">
+      <h2 id="formTitle">Service Application</h2>
+      <button class="close-form" onclick="closeServiceForm()" type="button">×</button>
+    </div>
+
+    <form id="serviceForm">
+      <input type="hidden" id="serviceName" name="serviceName">
+
+      <div class="form-grid">
+        <div class="form-group">
+          <label>Applicant Name *</label>
+          <input name="name" required>
+        </div>
+        <div class="form-group">
+          <label>Mobile Number *</label>
+          <input name="mobile" type="tel" pattern="[0-9]{10}" maxlength="10" required>
+        </div>
+        <div class="form-group">
+          <label>Email</label>
+          <input name="email" type="email">
+        </div>
+        <div class="form-group">
+          <label>Date of Birth</label>
+          <input name="dob" type="date">
+        </div>
+
+        <div class="form-group" id="aadhaarGroup">
+          <label>Aadhaar Number</label>
+          <input name="aadhaar" inputmode="numeric" maxlength="12">
+        </div>
+
+        <div class="form-group" id="idNumberGroup">
+          <label id="idNumberLabel">Existing ID / Application Number</label>
+          <input name="idNumber">
+        </div>
+
+        <div class="form-group full">
+          <label>Address *</label>
+          <textarea name="address" required></textarea>
+        </div>
+
+        <div class="form-group">
+          <label>District</label>
+          <input name="district" value="Gautam Buddha Nagar">
+        </div>
+        <div class="form-group">
+          <label>State</label>
+          <input name="state" value="Uttar Pradesh">
+        </div>
+
+        <div class="form-group" id="extraGroup">
+          <label id="extraLabel">Additional Details</label>
+          <input name="extraDetails" id="extraDetails">
+        </div>
+
+        <div class="form-group full">
+          <label>Documents Upload</label>
+          <input id="documents" name="documents" type="file" multiple
+                 accept=".jpg,.jpeg,.png,.pdf">
+          <div class="file-note">JPG, PNG or PDF. Please upload clear documents. Keep total upload size reasonably small (recommended: under 10 MB).</div>
+        </div>
+      </div>
+
+      <button class="form-submit" id="submitBtn" type="submit">Submit Application</button>
+      <div class="form-status" id="formStatus"></div>
+    </form>
+  </div>
 </div>
 
 </main>
@@ -1017,8 +1126,107 @@ function draw(){
 resize();
 draw();
 
+
+/* ================= SERVICE FORM ================= */
+const GOOGLE_SCRIPT_URL = "PASTE_YOUR_GOOGLE_APPS_SCRIPT_WEB_APP_URL_HERE";
+
+const serviceInfo = {
+  pan: {title:"PAN Card Application", extra:"Father / Husband Name", id:"PAN Number (if correction/reprint)"},
+  aadhaar: {title:"Aadhaar Services", extra:"Service Required", id:"Aadhaar / Enrollment Number"},
+  voter: {title:"Voter ID Application", extra:"Assembly / Village / Area", id:"Voter ID / EPIC Number"},
+  certificate: {title:"Certificate Application", extra:"Certificate Required (Income / Caste / Domicile etc.)", id:"Previous Certificate Number"},
+  dl: {title:"Driving Licence", extra:"Licence Service Required (Learner / New / Renewal etc.)", id:"Existing Licence Number"},
+  bill: {title:"Bill & Payment Service", extra:"Bill Type (Electricity / Water / Mobile etc.)", id:"Consumer / Account Number"}
+};
+
+function openServiceForm(service){
+  const info = serviceInfo[service];
+  if(!info) return;
+  document.getElementById("formTitle").textContent = info.title;
+  document.getElementById("serviceName").value = info.title;
+  document.getElementById("extraLabel").textContent = info.extra;
+  document.getElementById("idNumberLabel").textContent = info.id;
+  document.getElementById("serviceModal").classList.add("show");
+  document.body.style.overflow="hidden";
+}
+
+function closeServiceForm(){
+  document.getElementById("serviceModal").classList.remove("show");
+  document.body.style.overflow="";
+  document.getElementById("formStatus").textContent="";
+}
+
+document.getElementById("serviceModal").addEventListener("click", function(e){
+  if(e.target === this) closeServiceForm();
+});
+
+async function fileToBase64(file){
+  return new Promise((resolve,reject)=>{
+    const reader=new FileReader();
+    reader.onload=()=>resolve({
+      name:file.name,
+      type:file.type || "application/octet-stream",
+      size:file.size,
+      data:String(reader.result).split(",")[1]
+    });
+    reader.onerror=reject;
+    reader.readAsDataURL(file);
+  });
+}
+
+document.getElementById("serviceForm").addEventListener("submit", async function(e){
+  e.preventDefault();
+
+  if(GOOGLE_SCRIPT_URL.includes("PASTE_YOUR")){
+    alert("Google Sheet connection अभी सेट नहीं है. पहले Apps Script Web App URL डालें.");
+    return;
+  }
+
+  const btn=document.getElementById("submitBtn");
+  const status=document.getElementById("formStatus");
+  btn.disabled=true;
+  btn.textContent="Submitting...";
+  status.textContent="Please wait...";
+
+  try{
+    const data={};
+    new FormData(this).forEach((value,key)=>{
+      if(key!=="documents") data[key]=value;
+    });
+
+    const files=[...document.getElementById("documents").files];
+    const totalSize=files.reduce((s,f)=>s+f.size,0);
+    if(totalSize > 10*1024*1024){
+      throw new Error("Total document size 10 MB se zyada hai.");
+    }
+
+    data.documents=[];
+    for(const file of files) data.documents.push(await fileToBase64(file));
+    data.submittedAt=new Date().toISOString();
+
+    /* text/plain avoids a browser preflight; Apps Script receives the JSON body. */
+    await fetch(GOOGLE_SCRIPT_URL,{
+      method:"POST",
+      mode:"no-cors",
+      headers:{"Content-Type":"text/plain;charset=utf-8"},
+      body:JSON.stringify(data)
+    });
+
+    status.textContent="✅ Application submit ho gayi. Hum aapse contact karenge.";
+    status.style.color="#86efac";
+    this.reset();
+    document.getElementById("serviceName").value=data.serviceName;
+
+  }catch(err){
+    status.textContent="❌ "+(err.message || "Submission failed. Please try again.");
+    status.style.color="#fca5a5";
+  }finally{
+    btn.disabled=false;
+    btn.textContent="Submit Application";
+  }
+});
+
 </script>
 
 </body>
 </html>
-```
